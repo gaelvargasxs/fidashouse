@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FidasHouse — Panadería artesanal</title>
 <meta name="description" content="FidasHouse: panadería artesanal. Mira nuestros panes y precios, encuentra el local y haz tu pedido en línea.">
-<link rel="icon" type="image/png" href="fidashouse-logo.png">
+<link rel="icon" type="image/png" href="img/fidashouse-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -210,9 +210,10 @@ footer .logo{font-size:1.1rem;color:#fff}
   position:fixed;inset:0;background:rgba(20,10,4,.75);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   z-index:105;display:grid;place-items:center;padding:20px;
-  opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .35s ease,visibility .35s ease;
 }
-.detail-backdrop.open{opacity:1;visibility:visible}
+.detail-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}
 
 .detail-card{
   position:relative;width:min(860px,100%);max-height:90vh;
@@ -271,9 +272,10 @@ footer .logo{font-size:1.1rem;color:#fff}
   position:fixed;inset:0;background:rgba(20,10,4,.75);
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
   z-index:120;display:grid;place-items:center;padding:20px;
-  opacity:0;visibility:hidden;transition:opacity .32s ease,visibility .32s ease;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .32s ease,visibility .32s ease;
 }
-.drawer-overlay.open{opacity:1;visibility:visible}
+.drawer-overlay.open{opacity:1;visibility:visible;pointer-events:auto}
 
 .order-drawer{
   position:relative;width:min(660px,100%);max-height:88vh;
@@ -294,10 +296,14 @@ footer .logo{font-size:1.1rem;color:#fff}
   width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
   background:transparent;color:var(--ink);font-size:1.1rem;cursor:pointer;
   display:grid;place-items:center;transition:background .2s;
+  touch-action:manipulation;
 }
 .drawer-close:hover{background:var(--cream)}
 
-.drawer-body{padding:26px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:24px;flex:1}
+.drawer-body{
+  padding:26px 28px;overflow-y:auto;display:flex;flex-direction:column;gap:24px;flex:1;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;
+}
 
 .drawer-section-title{
   font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;color:var(--amber);
@@ -410,11 +416,11 @@ footer .logo{font-size:1.1rem;color:#fff}
   background:var(--cream);color:var(--ink);
   overflow:hidden;
   display:flex;flex-direction:column;
-  opacity:0;visibility:hidden;
+  opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .3s ease,visibility .3s ease;
 }
 .catalog-screen.open{
-  opacity:1;visibility:visible;
+  opacity:1;visibility:visible;pointer-events:auto;
 }
 
 .cat-nav{
@@ -457,12 +463,17 @@ footer .logo{font-size:1.1rem;color:#fff}
   .cat-hero-header{margin-bottom:18px}
   .cat-hero-header h2{font-size:1.75rem}
   .catalog-grid{grid-template-columns:1fr;gap:18px}
+  .stepper{padding:5px;gap:6px}
+  .stepper button{width:42px;height:42px;font-size:1.4rem}
+  .stepper output{min-width:36px;font-size:1.15rem}
 }
 
 .cat-content{
   flex:1;overflow-y:auto;overflow-x:hidden;
-  padding-top:32px;padding-bottom:50px;
+  padding-top:24px;padding-bottom:120px;
   -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
+  touch-action:pan-y;
 }
 .cat-hero-header{max-width:760px;margin-bottom:30px}
 .cat-hero-header h2{
@@ -515,25 +526,32 @@ footer .logo{font-size:1.1rem;color:#fff}
 /* STEPPER DE CANTIDAD */
 .stepper{
   display:inline-flex;align-items:center;background:#f5eee4;border:1px solid var(--line);
-  border-radius:999px;padding:3px;gap:3px;
+  border-radius:999px;padding:4px;gap:4px;
+  touch-action:manipulation;
+  -webkit-user-select:none;user-select:none;
 }
 .stepper button{
-  width:32px;height:32px;border-radius:50%;border:none;background:#ffffff;
-  color:var(--ink);font-weight:700;font-size:1.15rem;cursor:pointer;
+  width:38px;height:38px;border-radius:50%;border:none;background:#ffffff;
+  color:var(--ink);font-weight:700;font-size:1.25rem;cursor:pointer;
   display:grid;place-items:center;transition:background .2s,color .2s,transform .1s,box-shadow .2s;
   box-shadow:0 2px 4px rgba(0,0,0,.08);line-height:1;font-family:var(--font-body);
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 .stepper button:hover{background:linear-gradient(135deg,#f59e0b,#ea580c);color:#fff}
-.stepper button:active{transform:scale(.92)}
+.stepper button:active{transform:scale(.90)}
 .stepper output{
-  min-width:32px;text-align:center;font-family:var(--font-mono);font-size:.95rem;font-weight:700;color:var(--ink);
+  min-width:32px;text-align:center;font-family:var(--font-mono);font-size:1.05rem;font-weight:700;color:var(--ink);
+  -webkit-user-select:none;user-select:none;
 }
 
 /* BARRA FIJA INFERIOR DEL CATÁLOGO (DOCKEADA ABAJO) */
 .cat-bottom-bar{
   flex-shrink:0;z-index:20;
   background:#ffffff;
-  border-top:1px solid var(--line);padding:14px 0;box-shadow:0 -6px 25px rgba(43,22,8,.08);
+  border-top:1px solid var(--line);
+  padding:14px 0 max(16px, env(safe-area-inset-bottom));
+  box-shadow:0 -6px 25px rgba(43,22,8,.08);
 }
 .cat-bottom-inner{
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
@@ -567,7 +585,7 @@ footer .logo{font-size:1.1rem;color:#fff}
 
 <nav id="nav">
   <a href="#top" class="nav-brand">
-    <img src="fidashouse-logo.png" alt="FidasHouse Logo" class="brand-logo-img">
+    <img src="img/fidashouse-logo.png" alt="FidasHouse Logo" class="brand-logo-img">
     <span class="logo">Fidas<span>House</span></span>
   </a>
   <ul>
@@ -603,7 +621,7 @@ footer .logo{font-size:1.1rem;color:#fff}
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <div class="hero-logo-wrap">
-        <img src="fidashouse-logo.png" alt="FidasHouse Rolls, Babka & Bread" class="hero-logo-img">
+        <img src="img/fidashouse-logo.png" alt="FidasHouse Rolls, Babka & Bread" class="hero-logo-img">
       </div>
       <span class="chip">Horneado fresco todos los días</span>
       <h1>Pan artesanal<br><span class="grad">de alta fermentación.</span></h1>
@@ -704,7 +722,7 @@ footer .logo{font-size:1.1rem;color:#fff}
 <footer>
   <div class="wrap footer-content">
     <div class="footer-brand">
-      <img src="fidashouse-logo.png" alt="FidasHouse Logo" class="footer-logo-img">
+      <img src="img/fidashouse-logo.png" alt="FidasHouse Logo" class="footer-logo-img">
       <div>
         <span class="logo">Fidas<span>House</span></span>
         <p class="footer-tagline">Rolls · Babka · Bread — Panadería artesanal</p>
@@ -720,7 +738,7 @@ footer .logo{font-size:1.1rem;color:#fff}
 <!-- ====================================================================
      1. PANTALLA COMPLETA DE CATÁLOGO (SE ABRE CON "HACER PEDIDO")
      ==================================================================== -->
-<section class="catalog-screen" id="catalogScreen" aria-label="Catálogo de pedidos">
+<section class="catalog-screen" id="catalogScreen" aria-label="Catálogo de pedidos" data-lenis-prevent>
   <!-- Barra superior fija -->
   <header class="cat-nav">
     <div class="wrap cat-nav-inner">
@@ -728,7 +746,7 @@ footer .logo{font-size:1.1rem;color:#fff}
         <span aria-hidden="true">←</span> <span class="back-desktop">Volver a la panadería</span><span class="back-mobile">Volver</span>
       </button>
       <div class="cat-brand">
-        <img src="fidashouse-logo.png" alt="FidasHouse Logo" class="cat-logo-img">
+        <img src="img/fidashouse-logo.png" alt="FidasHouse Logo" class="cat-logo-img">
         <span class="logo">Fidas<span>House</span></span>
         <span class="cat-badge">Catálogo para pedido</span>
       </div>
@@ -739,7 +757,7 @@ footer .logo{font-size:1.1rem;color:#fff}
   </header>
 
   <!-- Contenido de la pantalla completa -->
-  <main class="cat-content wrap">
+  <main class="cat-content wrap" data-lenis-prevent>
     <div class="cat-hero-header">
       <span class="eyebrow-s">// Pedido en línea</span>
       <h2>Nuestras piezas para hoy.</h2>
@@ -772,8 +790,8 @@ footer .logo{font-size:1.1rem;color:#fff}
 <!-- ====================================================================
      2. MODAL DE DETALLE EXPANDIDO (FONDO DIFUMINADO)
      ==================================================================== -->
-<div class="detail-backdrop" id="detailModalBackdrop" onclick="if(event.target===this) closeDetailModal()">
-  <div class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+<div class="detail-backdrop" id="detailModalBackdrop" data-lenis-prevent onclick="if(event.target===this) closeDetailModal()">
+  <div class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detailTitle" data-lenis-prevent>
     <button class="detail-close" onclick="closeDetailModal()" aria-label="Cerrar">✕</button>
     <div class="detail-media">
       <img id="detailImg" src="" alt="">
@@ -804,11 +822,11 @@ footer .logo{font-size:1.1rem;color:#fff}
 <!-- ====================================================================
      3. MODAL DE CONFIRMACIÓN DE PEDIDO (CENTRADO CON FONDO DIFUMINADO)
      ==================================================================== -->
-<div class="drawer-overlay" id="drawerOverlay" onclick="if(event.target===this) closeOrderDrawer()">
-  <div class="order-drawer" id="orderDrawer" role="dialog" aria-modal="true" aria-labelledby="drwTitle">
+<div class="drawer-overlay" id="drawerOverlay" data-lenis-prevent onclick="if(event.target===this) closeOrderDrawer()">
+  <div class="order-drawer" id="orderDrawer" role="dialog" aria-modal="true" aria-labelledby="drwTitle" data-lenis-prevent>
     <div class="drawer-head">
       <div class="drawer-head-brand">
-        <img src="fidashouse-logo.png" alt="FidasHouse Logo" class="modal-logo-img">
+        <img src="img/fidashouse-logo.png" alt="FidasHouse Logo" class="modal-logo-img">
         <div>
           <span class="mono" style="color:var(--amber);font-size:.7rem">// Resumen del pedido</span>
           <h3 id="drwTitle">Confirmar Pedido</h3>
@@ -817,7 +835,7 @@ footer .logo{font-size:1.1rem;color:#fff}
       <button class="drawer-close" onclick="closeOrderDrawer()" aria-label="Cerrar">✕</button>
     </div>
 
-    <div class="drawer-body">
+    <div class="drawer-body" data-lenis-prevent>
       <!-- Desglose de panes seleccionados -->
       <div>
         <span class="drawer-section-title">1. Piezas seleccionadas</span>
@@ -1442,7 +1460,8 @@ if(window.location.hash === '#catalogo'){
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  if(typeof Lenis !== 'undefined' && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia('(pointer: coarse)').matches;
+  if(typeof Lenis !== 'undefined' && !isTouchDevice && !matchMedia('(prefers-reduced-motion: reduce)').matches){
     const lenis = new Lenis({duration:1.25,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
     window.__lenis = lenis;
     lenis.on('scroll',ScrollTrigger.update);
